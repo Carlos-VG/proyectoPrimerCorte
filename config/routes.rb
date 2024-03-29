@@ -12,10 +12,7 @@ Rails.application.routes.draw do
   end
 
   # Rutas para Productos
-  resources :productos do
-    # Ruta singular para ProductStock, ya que cada Producto tiene un único stock asociado
-    resource :product_stock, only: [:show, :edit, :update, :destroy]
-  end
+  resources :productos 
 
   # Rutas para Proveedores
   resources :proveedores do

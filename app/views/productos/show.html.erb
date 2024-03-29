@@ -1,0 +1,16 @@
+<!-- app/views/productos/show.html.erb -->
+<h1>Producto</h1>
+<p>
+  <strong>Nombre:</strong>
+  <%= @producto.nombre %>
+</p>
+<p>
+  <strong>Precio:</strong>
+  <%= @producto.precio %>
+</p>
+<p>
+  <strong>Descripción:</strong>
+  <%= @producto.descripcion %>
+</p>
+
+<%= link_to 'Volver', productos_path %>
