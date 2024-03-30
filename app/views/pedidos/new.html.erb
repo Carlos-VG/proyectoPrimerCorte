@@ -1,0 +1,31 @@
+<!-- app/views/pedidos/new.html.erb -->
+<h1>Crear un nuevo pedido</h1>
+
+<%= form_with model: @pedido, url: pedidos_path do |form| %>
+  <div>
+    <%= form.label :clt_nombre, "Nombre del cliente" %>
+    <%= form.text_field :clt_nombre %>
+  </div>
+
+  <div>
+    <%= form.label :clt_direccion, "Dirección de entrega" %>
+    <%= form.text_field :clt_direccion %>
+  </div>
+
+  <div>
+    <%= form.label :ped_fecha, "Fecha del pedido" %>
+    <%= form.date_field :ped_fecha %>
+  </div>
+
+  <h2>Productos</h2>
+  <% @productos.each do |producto| %>
+    <div>
+      <%= check_box_tag "productos[#{producto.id}][cantidad]", 0 %>
+      <%= label_tag "productos_#{producto.id}_cantidad", producto.nombre %>
+      <%= number_field_tag "productos[#{producto.id}][cantidad]", 0, min: 0 %>
+      <%= label_tag "productos_#{producto.id}_precio", number_to_currency(producto.precio) %>
+    </div>
+  <% end %>
+
+  <%= form.submit "Crear Pedido" %>
+<% end %>
