@@ -26,7 +26,7 @@ class ProveedoresController < ApplicationController
   def create
     @proveedor = Proveedor.new(proveedor_params)
     if @proveedor.save
-      redirect_to @proveedor, notice: 'Proveedor fue creado con éxito.'
+      redirect_to proveedore_path(@proveedor), notice: 'Proveedor fue creado con éxito.'
     else
       render :new
     end
@@ -44,7 +44,7 @@ class ProveedoresController < ApplicationController
   # DELETE /proveedores/1
   def destroy
     @proveedor.destroy
-    redirect_to proveedores_url, notice: 'Proveedor fue eliminado con éxito.'
+    redirect_to proveedore_path, notice: 'Proveedor fue eliminado con éxito.'
   end
 
   private
@@ -54,7 +54,7 @@ class ProveedoresController < ApplicationController
       @proveedor = Proveedor.find(params[:id])
     rescue ActiveRecord::RecordNotFound
       flash[:alert] = 'Proveedor no encontrado.'
-      redirect_to proveedores_path
+      redirect_to proveedore_path
     end
 
     # Only allow a list of trusted parameters through.

@@ -15,10 +15,7 @@ Rails.application.routes.draw do
   resources :productos 
 
   # Rutas para Proveedores
-  resources :proveedores do
-    # Rutas anidadas para ProveedorProductos, para manejar los productos que cada Proveedor ofrece
-    resources :proveedor_productos, except: [:show] # Se ajusta según las acciones necesarias
-  end
+  resources :proveedores
 
   # Si necesitas acceder a ProveedorProductos directamente (no a través de Proveedores),
   # puedes definir rutas no anidadas también.

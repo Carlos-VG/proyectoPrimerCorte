@@ -1,0 +1,16 @@
+<!-- app/views/productos/new.html.erb -->
+<h1>Nuevo Proovedor</h1>
+
+<%= form_with model: @proveedor, url: proveedores_path do |form| %>
+
+  <div>
+    <%= form.label :prov_nombre, "Nombre del proveedor" %>
+    <%= form.text_field :prov_nombre %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+
+<%= link_to 'Volver', proveedores_path %>
