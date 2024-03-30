@@ -18,14 +18,15 @@ class PedidosController < ApplicationController
 
   def create
     @pedido = Pedido.new(pedido_params)
-    calcular_costo_total
 
     if @pedido.save
+      calcular_costo_total
       redirect_to @pedido, notice: 'Pedido creado correctamente.'
     else
       render :new
     end
   end
+
 
   def update
     @pedido = Pedido.find(params[:id])
@@ -53,11 +54,23 @@ class PedidosController < ApplicationController
 
     if params[:productos].present?
       params[:productos].each do |producto_id, detalles|
-        producto = Producto.find(producto_id)
         cantidad = detalles[:cantidad].to_i
-        total_costo += producto.precio * cantidad
+        if cantidad > 0
+          producto = Producto.find_by(id: producto_id)
+          if producto
+            costo_producto = producto.precio * cantidad
+            total_costo += costo_producto
+            puts "Producto: #{detalles[:pedido_id].to_i}, cantidad: #{cantidad}"
+            PedidoProducto.create(pedido_id: @pedido.id, producto_id: producto_id, cantidad: cantidad)
+          end
+        end
       end
     end
     @pedido.ped_costo = total_costo
+    @pedido.save
   end
+
+
+
+
 end

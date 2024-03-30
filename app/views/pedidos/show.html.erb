@@ -23,13 +23,15 @@
 
 <h2>Productos en este pedido</h2>
 <table>
+  <thead>
   <tr>
-    <th>Producto</th>
+    <th>Nombre del Producto</th>
     <th>Cantidad</th>
     <th>Precio Unitario</th>
     <th>Subtotal</th>
   </tr>
-
+  </thead>
+  <tbody>
   <% @pedido.pedido_productos.each do |pedido_producto| %>
     <tr>
       <td><%= pedido_producto.producto.nombre %></td>
@@ -38,6 +40,7 @@
       <td><%= number_to_currency(pedido_producto.cantidad * pedido_producto.producto.precio) %></td>
     </tr>
   <% end %>
+  </tbody>
 </table>
 
 <%= link_to 'Editar Pedido', edit_pedido_path(@pedido) %> |

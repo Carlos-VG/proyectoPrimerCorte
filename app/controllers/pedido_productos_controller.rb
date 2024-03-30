@@ -40,8 +40,6 @@ class PedidoProductosController < ApplicationController
       flash[:alert] = 'Relación Pedido-Producto no encontrada.'
       redirect_to pedidos_path
     end
-
-    # Only allow a list of trusted parameters through.
     def pedido_producto_params
       params.require(:pedido_producto).permit(:producto_id, :cantidad)
     end
