@@ -12,16 +12,17 @@
     <%= form.text_field :clt_direccion %>
   </div>
 
-  <div>
-    <%= form.label :ped_fecha, "Fecha del pedido" %>
-    <%= form.date_field :ped_fecha %>
+  <div class="field">
+    <%= form.label :"Fecha del pedido" %>
+    <%= form.hidden_field :ped_fecha, value: Date.today %>
+    <p><%= Date.today %></p>
   </div>
 
   <h2>Productos</h2>
   <% @productos.each do |producto| %>
     <div>
-      <%= check_box_tag "productos[#{producto.id}][cantidad]", 0 %>
-      <%= label_tag "productos_#{producto.id}_cantidad", producto.nombre %>
+      <%= hidden_field_tag "productos[#{producto.id}][comprado]", 1 %>
+      <%= label_tag "productos_#{producto.id}_comprado", producto.nombre %>
       <%= number_field_tag "productos[#{producto.id}][cantidad]", 0, min: 0 %>
       <%= label_tag "productos_#{producto.id}_precio", number_to_currency(producto.precio) %>
     </div>
